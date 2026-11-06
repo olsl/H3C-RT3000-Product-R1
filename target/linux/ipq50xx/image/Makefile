@@ -363,3 +363,22 @@ endef
 TARGET_DEVICES += h3c_rt3000_rtl8367s_installer_ram
 
 $(eval $(call BuildImage))
+
+define Device/tplink_wta301_ram
+  $(call Device/FitImage)
+  SOC := ipq5018
+  DEVICE_DTS := ipq5018-wta301
+  DEVICE_VENDOR := TP-Link
+  DEVICE_MODEL := WTA301 (RAM bring-up)
+  DEVICE_DTS_CONFIG := config@mp03.1-c2
+  SUPPORTED_DEVICES := tplink,wta301
+  DEVICE_PACKAGES := \
+	kmod-qca-nss-dp \
+	ATH11K_MEM_PROFILE_256M \
+	kmod-ath11k \
+	ath11k-firmware-ipq5018 \
+	ath11k-firmware-qcn6122 \
+	wpad-basic-wolfssl
+  IMAGES :=
+endef
+TARGET_DEVICES += tplink_wta301_ram
